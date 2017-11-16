@@ -5,6 +5,7 @@ from boto.mturk.question import HTMLQuestion
 from boto.mturk.connection import MTurkRequestError
 
 import os
+import pdb
 import simpleamt
 import sys
 
@@ -19,6 +20,7 @@ if __name__ == '__main__':
 
   hit_properties = json.load(args.hit_properties_file)
   hit_properties['reward'] = Price(hit_properties['reward'])
+  pdb.set_trace()
   simpleamt.setup_qualifications(hit_properties, mtc)
 
   frame_height = hit_properties.pop('frame_height')
@@ -26,10 +28,10 @@ if __name__ == '__main__':
   template = env.get_template(args.html_template)
 
   if args.hit_ids_file is None:
-    print 'Need to input a hit_ids_file'
+    print('Need to input a hit_ids_file')
     sys.exit()
   if os.path.isfile(args.hit_ids_file):
-    print 'hit_ids_file already exists'
+    print('hit_ids_file already exists')
     sys.exit()
 
   with open(args.hit_ids_file, 'w') as hit_ids_file:
@@ -51,9 +53,7 @@ if __name__ == '__main__':
           boto_hit = mtc.create_hit(**hit_properties)
           launched = True
         except MTurkRequestError as e:
-          print e
+          print(e)
       hit_id = boto_hit[0].HITId
       hit_ids_file.write('%s\n' % hit_id)
-      print 'Launched HIT ID: %s, %d' % (hit_id, i + 1)
-
-
+      print('Launched HIT ID: %s, %d' % (hit_id, i + 1))

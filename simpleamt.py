@@ -14,8 +14,9 @@ def get_jinja_env(config):
   """
   Get a jinja2 Environment object that we can use to find templates.
   """
-  return Environment(loader=FileSystemLoader('.'))
-
+  search_path = config.get("template_directories", [])
+  search_path.append(".")
+  return Environment(loader=FileSystemLoader(search_path))
 
 def json_file(filename):
   with open(filename, 'r') as f:
@@ -82,7 +83,7 @@ def setup_qualifications(hit_properties, mtc):
     elif comparator == '<': 
         c = 'LessThan'
     else:
-        print "The 'qualification comparator' is not one of the designated values ('<', '=', '>')."
+        print("The 'qualification comparator' is not one of the designated values ('<', '=', '>').")
     qual.add(Requirement(hit_properties['qualification_id'], c, int(hit_properties['qualification_integer']), required_to_preview = False));
     del hit_properties['qualification_id']
     del hit_properties['qualification_comparator']

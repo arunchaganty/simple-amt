@@ -13,15 +13,15 @@ def process_assignments(mtc, hit_id, status):
       if len(assignments) == 0:
         return results
     except:
-      print >> sys.stderr, ('Bad hit_id %s' % str(hit_id))
+      print(('Bad hit_id %s' % str(hit_id)), file=sys.stderr)
       return results
     for a in assignments:
       if a.AssignmentStatus in status:
         try:
           output = json.loads(a.answers[0][0].fields[0])
         except ValueError as e:
-          print >> sys.stderr, ('Bad data from assignment %s (worker %s)'
-              % (a.AssignmentId, a.WorkerId))
+          print(('Bad data from assignment %s (worker %s)'
+              % (a.AssignmentId, a.WorkerId)), file=sys.stderr)
           mtc.reject_assignment(a.AssignmentId, feedback='Invalid results')
           continue
         results.append({
@@ -69,5 +69,5 @@ if __name__ == '__main__':
         results += process_assignments(mtc, hit_id, status)
 
   for assignment_result in results:
-    print json.dumps(assignment_result)
+    print(json.dumps(assignment_result))
 
