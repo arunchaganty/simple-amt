@@ -28,11 +28,11 @@ def get_parent_parser():
   Get an argparse parser with arguments that are always needed
   """
   parser = argparse.ArgumentParser(add_help=False)
-  parser.add_argument('--prod', action='store_false', dest='sandbox',
+  parser.add_argument('-P', '--prod', action='store_false', dest='sandbox',
                       default=True,
                       help="Whether to run on the production AMT site.")
-  parser.add_argument('--hit_ids_file')
-  parser.add_argument('--config', default='config.json',
+  parser.add_argument('-H', '--hit_ids_file')
+  parser.add_argument('-c', '--config', default='config.json',
                       type=json_file)
   return parser
 

@@ -11,9 +11,9 @@ import sys
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(parents=[simpleamt.get_parent_parser()])
-  parser.add_argument('--hit_properties_file', type=argparse.FileType('r'))
-  parser.add_argument('--html_template')
-  parser.add_argument('--input_json_file', type=argparse.FileType('r'))
+  parser.add_argument('-p', '--hit_properties_file', type=argparse.FileType('r'))
+  parser.add_argument('-t', '--html_template')
+  parser.add_argument('-i', '--input_json_file', type=argparse.FileType('r'))
   args = parser.parse_args()
 
   mtc = simpleamt.get_mturk_connection_from_args(args)

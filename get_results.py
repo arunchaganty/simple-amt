@@ -36,8 +36,8 @@ def process_assignments(mtc, hit_id, status):
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(parents=[simpleamt.get_parent_parser()])
-  parser.add_argument('--output_file')
-  parser.add_argument('--rejected', action='store_true', dest='rejected',
+  parser.add_argument('-o', '--output_file')
+  parser.add_argument('-R', '--rejected', action='store_true', dest='rejected',
                       default=False,
                       help="Whether to also fetch the rejected hits.")
   args = parser.parse_args()

@@ -5,7 +5,7 @@ import simpleamt
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(parents=[simpleamt.get_parent_parser()],
               description="Delete HITs")
-  parser.add_argument('--worker_ids_file')
+  parser.add_argument('-w', '--worker_ids_file')
   args = parser.parse_args()
   mtc = simpleamt.get_mturk_connection_from_args(args)
   worker_ids = []

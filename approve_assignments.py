@@ -3,12 +3,12 @@ import simpleamt
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(add_help=False)
-  parser.add_argument('--prod', action='store_false', dest='sandbox',
+  parser.add_argument('-P', '--prod', action='store_false', dest='sandbox',
                       default=True,
                       help="Whether to run on the production AMT site.")
-  parser.add_argument('--assignment_ids_file')
+  parser.add_argument('-a', '--assignment_ids_file')
   parser.add_argument('-f', action='store_true', default=False)
-  parser.add_argument('--config', default='config.json', type=simpleamt.json_file)
+  parser.add_argument('-c', '--config', default='config.json', type=simpleamt.json_file)
   args = parser.parse_args()
   mtc = simpleamt.get_mturk_connection_from_args(args)
 
